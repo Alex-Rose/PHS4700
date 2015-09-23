@@ -1,6 +1,13 @@
 function [ output_args ] = CentreDeMasse( centres, masses )
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%CentreDeMasse Calcul le centre de masse global des objets
+%   centres : Liste de vecteurs colonnes représentant les centres de masses
+%             ex : [ x1 x2; y1 y2; z1 z2]
+%   masses  : Liste de masse des solides 
+%
+% IMPORTANT : L'ordre des centre de masse doit être le même que celui des
+%             masses puisque l'opération est une moyenne pondérée.
+%
+% Voir main.m exemple avec jambe gauche
 
 masseTotale = sum(masses);
 
