@@ -1,6 +1,11 @@
-function [ output_args ] = MomentInertieCylindre( masse, rayon, longueur, largeur, hauteur, forme )
-%MomentInertieCylindre Calcul le moment d'inertie d'un cylindre aligné avec
-%l'axe des Z
+function [ output_args ] = MomentInertieForme( masse, rayon, longueur, largeur, hauteur, forme )
+%CentreDeMasse Calcule le moment d'inertie d'une forme
+%   centres : Liste de vecteurs colonnes représentant les centres de masses
+%
+% IMPORTANT : Les cylindres doivent être aligné avec l'axe des z. Les
+% parallelepipedes doivent être aligné avec les axes. Il faut donc
+% appliquer les rotations après avoir utilisé cette fonction.
+
 
     moment = [1 0 0 ;0 1 0;0 0 1];
 
