@@ -1,34 +1,29 @@
-classdef Cylindre < Objet & handle
-    % Cylindre Objet contenant les propriétés d'un cylindre
+classdef Sphere < Objet & handle
+    % Sphere Objet contenant les propriétés d'un sphere
     %   Méthodes disponibles : 
     %      - CalcVolume
     %      - CalcMasse (Hérité d'Objet)
     
     properties
-        Longueur
         Rayon
     end
     
     methods
         % forme : type Forme, permet de déterminer si plein ou creux.
-        function obj = Cylindre(forme)
-            if (forme ~= Forme.CylindrePlein && forme ~= Forme.CylindreCreux)
-                error('Cylindre pas de type Forme.Cylindre*')
+        function obj = Sphere(forme)
+            if (forme ~= Forme.SpherePleine && forme ~= Forme.SphereCreuse)
+                error('Shpere pas de type Forme.Sphere*')
             end
             obj = obj@Objet(forme);
-            obj.Longueur = 0;
             obj.Rayon = 0;
         end
         
         function v = CalcVolume(obj)
-            if isnumeric(obj.Rayon) && isnumeric(obj.Longueur)
+            if isnumeric(obj.Rayon)
                 if (obj.Rayon == 0)
                     warning('Rayon = 0')
                 end
-                if (obj.Longueur == 0)
-                    warning('Longueur = 0')
-                end
-               obj.Volume = pi * obj.Rayon^2 * obj.Longueur; 
+               obj.Volume = 4/3 * pi * obj.Rayon^3; 
                v = obj.Volume;
             end
         end

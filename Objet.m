@@ -7,14 +7,16 @@ classdef (Abstract) Objet < handle
         CentreDeMasse
         Volume
         Masse
+        Forme
     end
     
     methods
-        function obj = Objet()
+        function obj = Objet(forme)
             obj.MasseVolumique = 0;
             obj.CentreDeMasse = 0;
             obj.Volume = 0;
             obj.Masse = 0;
+            obj.Forme = forme;
         end
         
         function m = CalcMasse(obj)
