@@ -36,7 +36,12 @@ classdef Cylindre < Objet & handle
         function m = CalcMasse(obj)
             m = CalcMasse@Objet(obj);
         end
-       
+                
+        function m = MomentInertie(obj, centre)
+           m = MomentInertieForme(obj.Masse, obj.Rayon, obj.Longueur, 0, 0, obj.Forme); 
+           m = AjustementInertieCentreDeMasse(m, obj.Masse, obj.CentreDeMasse, centre);
+        end
+        
     end
     
 end

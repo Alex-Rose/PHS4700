@@ -31,6 +31,11 @@ classdef Sphere < Objet & handle
         function m = CalcMasse(obj)
             m = CalcMasse@Objet(obj);
         end
+        
+        function m = MomentInertie(obj, centre)
+           m = MomentInertieForme(obj.Masse, obj.Rayon, 0, 0, 0, obj.Forme); 
+           m = AjustementInertieCentreDeMasse(m, obj.Masse, obj.CentreDeMasse, centre);
+        end
        
     end
     
