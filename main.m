@@ -18,18 +18,22 @@ momentForce = MomentForce(pointForce, centreMasseGlobal, vecteurForce)
 
 momentInertie = jambeGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + jambeDroite.MomentInertie(centreMasseGlobal);
-momentInertie = momentInertie + jambeGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + tronc.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + cou.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasDroit.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasGauche.MomentInertie(centreMasseGlobal);
-momentInertie = momentInertie + tete.MomentInertie(centreMasseGlobal);
+momentInertie = momentInertie + tete.MomentInertie(centreMasseGlobal)
 
 acceleration = momentInertie \ momentForce
 
-%momentInertieTotal = momentInertie + MomentInertieForme(jambeGauche.Masse, jambeGauche.Rayon, momentInterie;
+%pour le bonhomme
+rot = Rotation(0,-pi/18,0)
+momentInertieRota = rot*momentInertie*inv(rot)
 
 % Test
 moment = MomentInertieForme(1.69,0.04,1.5,0,0,Forme.CylindreCreux);
+rota = Rotation(0,pi/4,pi/4);
+iBouee = [3.6158 0 0; 0 3.6158 0; 0 0 0.3448];
+iBoueeRota = rota*iBouee*inv(rota);
 
 AjustementInertieCentreDeMasse(moment,1.69,[0;0;0.75],[0;0;-0.538]); %voir note cours 2, c'est le bon résultat pour la tige de la boué
