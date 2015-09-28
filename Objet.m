@@ -36,5 +36,9 @@ classdef (Abstract) Objet < handle
         
     end
     
+    methods (Abstract)
+       m = MomentInertie(obj, centre)
+    end
+    
 end
 

@@ -43,6 +43,15 @@ function m = CalcMasse(obj)
 end
 ```
 
+### Manipulation de matrices
+Pour faire une multiplication de matrice inverse (division) `A^-1 * B` peut faire deux choses : 
+
+```
+A \ B 
+% équivalent à 
+inv(A) * B
+```
+
 **Références** :
 
 * [Classes de base] (http://www.mathworks.com/help/matlab/matlab_oop/getting-familiar-with-classes.html#buoz2sc)

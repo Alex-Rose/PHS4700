@@ -4,8 +4,8 @@ clc;    %clear le texte de la console
 Declarations
 
 % Calcul du centre de masse global de l'objet
-cdms = [ jambeGauche.CentreDeMasse jambeDroite.CentreDeMasse tronc.CentreDeMasse cou.CentreDeMasse brasGauche.CentreDeMasse brasDroit.CentreDeMasse ];
-masses = [ jambeGauche.Masse jambeDroite.Masse tronc.Masse cou.Masse brasGauche.Masse brasDroit.Masse ];
+cdms = [ jambeGauche.CentreDeMasse jambeDroite.CentreDeMasse tronc.CentreDeMasse cou.CentreDeMasse brasGauche.CentreDeMasse brasDroit.CentreDeMasse tete.CentreDeMasse ];
+masses = [ jambeGauche.Masse jambeDroite.Masse tronc.Masse cou.Masse brasGauche.Masse brasDroit.Masse tete.Masse ];
 centreMasseGlobal = CentreDeMasse(cdms, masses);
 
 disp('Centre de masse du patineur')
@@ -23,8 +23,12 @@ momentInertie = momentInertie + cou.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasDroit.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + tete.MomentInertie(centreMasseGlobal)
+ 
+% acceleration = inv(momentInertie) * momentForce
 
-acceleration = momentInertie \ momentForce
+acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentInertie, [0 0 0]')
+
+acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentInertie, [0 0 10]')
 
 %pour le bonhomme
 rot = Rotation(0,-pi/18,0)
