@@ -31,8 +31,8 @@ acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentI
 acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentInertie, [0 0 10]')
 
 %pour le bonhomme
-rot = Rotation(0,-pi/18,0)
-momentInertieRota = rot*momentInertie*inv(rot)
+rot = Rotation(0,-pi/18,0);
+momentInertieRota = rot*momentInertie*inv(rot);
 
 % Test
 moment = MomentInertieForme(1.69,0.04,1.5,0,0,Forme.CylindreCreux);

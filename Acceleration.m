@@ -16,7 +16,9 @@ function a = Acceleration( positionForce, force, centreMasseGlobal, momentInerti
         ];
 
     % momentInertie \ momentForce <=> inv(momentInertie) * momentForce
-    a = momentInertie \ (momentForce + (omegaTilde * momentInertie * vi)); 
+    % a = momentInertie \ (momentForce - (omegaTilde * momentInertie * vi)); 
+    L = momentInertie * vi;
+    a = inv(momentInertie) * (momentForce + cross(L, vi));
 
 end
 

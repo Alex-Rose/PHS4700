@@ -47,9 +47,8 @@ end
 Pour faire une multiplication de matrice inverse (division) `A^-1 * B` peut faire deux choses : 
 
 ```
-A \ B 
-% équivalent à 
-inv(A) * B
+Pour a^-1 * b remplacer inv(A)*b with A\b
+Pour b * a^-1 remplacer b*inv(A) with b/A
 ```
 
 **Références** :
