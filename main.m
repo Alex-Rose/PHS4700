@@ -11,9 +11,10 @@ centreMasseGlobal = CentreDeMasse(cdms, masses);
 disp('Centre de masse du patineur')
 disp(centreMasseGlobal')
 
+centreMasseToBePrinted = centreMasseGlobal;
 % Si incliné
-% rot = Rotation(0,-pi/18,0);
-% centreMasseGlobal = (rot*centreMasseGlobal)'*inv(rot);
+rot = Rotation(0,-pi/18,0);
+centreMasseToBePrinted = (rot*centreMasseGlobal);
 
 % Application de la force
 pointForce = [0 tete.Rayon jambeGauche.Longueur + tronc.Longueur + cou.Longueur + tete.Rayon]';
@@ -37,7 +38,7 @@ momentInertie = momentInertie + brasGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + tete.MomentInertie(centreMasseGlobal)
 
 % Si incliné
-% momentInertie = rot*momentInertie*inv(rot);
+%momentInertie = rot*momentInertie*inv(rot)
 
 acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentInertie, [0 0 0]')
 
