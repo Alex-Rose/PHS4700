@@ -41,7 +41,7 @@ cou.CalcMasse();
 brasGauche = Cylindre(Forme.CylindrePlein);
 brasGauche.Longueur = 75;
 brasGauche.Rayon = 3;
-brasGauche.CentreDeMasse = [ -(tronc.rayon + brasGauche.rayon) 0 jambeGauche.Longueur + tronc.Longueur - (brasGauche.Longueur/2)]';
+brasGauche.CentreDeMasse = [ -(tronc.Rayon + brasGauche.Longueur / 2) 0 jambeGauche.Longueur + tronc.Longueur - brasGauche.Rayon]';
 brasGauche.MasseVolumique = 0.001052; % kg/m3 = 10E-6 kg/cm3
 brasGauche.CalcVolume();
 brasGauche.CalcMasse();
@@ -50,7 +50,7 @@ brasGauche.CalcMasse();
 brasDroit = Cylindre(Forme.CylindrePlein);
 brasDroit.Longueur = 75;
 brasDroit.Rayon = 3;
-brasDroit.CentreDeMasse = [ (tronc.rayon + brasDroit.rayon) 0 jambeDroite.Longueur + tronc.Longueur - (brasDroit.Longueur/2)]';
+brasDroit.CentreDeMasse = [ (tronc.Rayon + brasDroit.Rayon) 0 jambeDroite.Longueur + tronc.Longueur - (brasDroit.Longueur/2)]';
 brasDroit.MasseVolumique = 0.001052; % kg/m3 = 10E-6 kg/cm3
 brasDroit.CalcVolume();
 brasDroit.CalcMasse();

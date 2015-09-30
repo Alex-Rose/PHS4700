@@ -1,7 +1,7 @@
 clear;  %clear la mémoire
 clc;    %clear le texte de la console
 
-Declarations
+Declarations2
 
 % Calcul du centre de masse global de l'objet
 cdms = [ jambeGauche.CentreDeMasse jambeDroite.CentreDeMasse tronc.CentreDeMasse cou.CentreDeMasse brasGauche.CentreDeMasse brasDroit.CentreDeMasse tete.CentreDeMasse ];
