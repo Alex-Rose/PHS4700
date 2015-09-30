@@ -1,7 +1,7 @@
 clear;  %clear la mémoire
 clc;    %clear le texte de la console
 
-Declarations2
+Declarations
 
 % Calcul du centre de masse global de l'objet
 cdms = [ jambeGauche.CentreDeMasse jambeDroite.CentreDeMasse tronc.CentreDeMasse cou.CentreDeMasse brasGauche.CentreDeMasse brasDroit.CentreDeMasse tete.CentreDeMasse ];
@@ -11,9 +11,21 @@ centreMasseGlobal = CentreDeMasse(cdms, masses);
 disp('Centre de masse du patineur')
 disp(centreMasseGlobal')
 
+% Si incliné
+% rot = Rotation(0,-pi/18,0);
+% centreMasseGlobal = (rot*centreMasseGlobal)'*inv(rot);
+
 % Application de la force
 pointForce = [0 tete.Rayon jambeGauche.Longueur + tronc.Longueur + cou.Longueur + tete.Rayon]';
+
+% Si incliné
+% pointForce = (rot*pointForce)'*inv(rot);
+
 vecteurForce = [0 -200 0]';
+
+% Si incliné
+% vecteurForce = (rot*vecteurForce)'*inv(rot)
+
 momentForce = MomentForce(pointForce, centreMasseGlobal, vecteurForce);
 
 momentInertie = jambeGauche.MomentInertie(centreMasseGlobal);
@@ -24,23 +36,10 @@ momentInertie = momentInertie + brasDroit.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + tete.MomentInertie(centreMasseGlobal)
 
-% rot = Rotation(0,-pi/18,0);
+% Si incliné
 % momentInertie = rot*momentInertie*inv(rot);
- 
-% acceleration = inv(momentInertie) * momentForce
 
 acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentInertie, [0 0 0]')
 
 acceleration = Acceleration(pointForce, vecteurForce, centreMasseGlobal, momentInertie, [0 0 10]')
 
-%pour le bonhomme
-rot = Rotation(0,-pi/18,0);
-momentInertieRota = rot*momentInertie*inv(rot);
-
-% Test
-moment = MomentInertieForme(1.69,0.04,1.5,0,0,Forme.CylindreCreux);
-rota = Rotation(0,pi/4,pi/4);
-iBouee = [3.6158 0 0; 0 3.6158 0; 0 0 0.3448];
-iBoueeRota = rota*iBouee*inv(rota);
-
-AjustementInertieCentreDeMasse(moment,1.69,[0;0;0.75],[0;0;-0.538]); %voir note cours 2, c'est le bon résultat pour la tige de la boué
