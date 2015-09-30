@@ -13,8 +13,8 @@ disp(centreMasseGlobal')
 
 % Application de la force
 pointForce = [0 tete.Rayon jambeGauche.Longueur + tronc.Longueur + cou.Longueur + tete.Rayon]';
-vecteurForce = [0 -20000 0]';
-momentForce = MomentForce(pointForce, centreMasseGlobal, vecteurForce)
+vecteurForce = [0 -200 0]';
+momentForce = MomentForce(pointForce, centreMasseGlobal, vecteurForce);
 
 momentInertie = jambeGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + jambeDroite.MomentInertie(centreMasseGlobal);
@@ -23,6 +23,9 @@ momentInertie = momentInertie + cou.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasDroit.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + brasGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + tete.MomentInertie(centreMasseGlobal)
+
+% rot = Rotation(0,-pi/18,0);
+% momentInertie = rot*momentInertie*inv(rot);
  
 % acceleration = inv(momentInertie) * momentForce
 
