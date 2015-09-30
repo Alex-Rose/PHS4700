@@ -2,7 +2,7 @@ clear;  %clear la mémoire
 clc;    %clear le texte de la console
 
 % --------------- INITIALISATION ---------------
-Declarations1
+Declarations2
 
 % --------------- QUESTION A ---------------
 % Simuler l'inclinaison de 10deg
