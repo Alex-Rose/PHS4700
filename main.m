@@ -1,8 +1,10 @@
 clear;  %clear la mémoire
 clc;    %clear le texte de la console
 
+% --------------- INITIALISATION ---------------
 Declarations1
 
+% --------------- QUESTION A ---------------
 % Simuler l'inclinaison de 10deg
 incline = true;
 
@@ -22,18 +24,7 @@ disp('Question a)')
 disp('Centre de masse du patineur = ')
 disp(centreMasseIncline)
 
-
-% Application de la force
-pointForce = [0 tete.Rayon jambeGauche.Longueur + tronc.Longueur + cou.Longueur + tete.Rayon]';
-
-if (incline)
-    pointForce = (rot*pointForce);
-end
-
-vecteurForce = [0 -200 0]';
-
-momentForce = MomentForce(pointForce, centreMasseIncline, vecteurForce);
-
+% --------------- QUESTION B ---------------
 % Moment d'inertie
 momentInertie = jambeGauche.MomentInertie(centreMasseGlobal);
 momentInertie = momentInertie + jambeDroite.MomentInertie(centreMasseGlobal);
@@ -51,6 +42,16 @@ disp('Question b)')
 disp('Moment inertie = ')
 disp(momentInertie)
 
+% --------------- QUESTION C ---------------
+% Application de la force
+pointForce = [0 tete.Rayon jambeGauche.Longueur + tronc.Longueur + cou.Longueur + tete.Rayon]';
+
+if (incline)
+    pointForce = (rot*pointForce);
+end
+
+vecteurForce = [0 -200 0]';
+
 % Acceleration
 disp('Question c)')
 acceleration = Acceleration(pointForce, vecteurForce, centreMasseIncline, momentInertie, [0 0 0]')
@@ -60,6 +61,7 @@ if (incline)
     vi = rot * vi;
 end
 
+% --------------- QUESTION D ---------------
 disp('Question d)')
 acceleration = Acceleration(pointForce, vecteurForce, centreMasseIncline, momentInertie, vi)
 
