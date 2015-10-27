@@ -22,8 +22,10 @@ function [ output, prise ] = Simulation( fn, vi, Balle, cnt, sortie, zone)
         
         if ( pointY >= zone.Points(2,1)&& pointY <= zone.Points(2,2) && pointZ <= zone.Points(3,1) && pointZ >= zone.Points(3,3))
             prise = 1;
+        else if p(7) > 0
+             [sortie, prise] = Simulation(fn, [p(2) p(3) p(4)], Balle, cnt+1, sortie, zone);
         end
-        disp(p)
+        %disp(p)
         output = sortie;
     end
 end
