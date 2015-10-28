@@ -13,21 +13,21 @@ Calculs.gravite(Balle);
 hold on
 axis([-10 20 -1 1 0 3]);
 
-%zone
-pointA = Zone.Points(:,1);
-pointB = Zone.Points(:,2);
-pointD = Zone.Points(:,3);
-pointC = Zone.Points(:,4);
+%zonePrise
+pointA = zonePrise.Points(:,1);
+pointB = zonePrise.Points(:,2);
+pointD = zonePrise.Points(:,3);
+pointC = zonePrise.Points(:,4);
 points=[pointA pointB pointC pointD]; % using the data given in the question
 fill = fill3(points(1,:), points(2,:) ,points(3,:),'r');
-set(fill, 'DisplayName', 'Zone de prise');
+set(fill, 'DisplayName', 'zonePrise de prise');
 alpha(0.3)
 
 %sim1
 disp('--------------------------------------------------')
 disp('Simulation 1')
 s1 = Sortie();
-[result, prise] = Simulation('g1', Vi1, Balles(1), 0, s1, Zone);
+[result, prise] = Simulation('g1', Vi1, Balles(1), 0, s1, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '-');
 set(ln, 'DisplayName', 'Simulation 1');
@@ -45,7 +45,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 2')
 s = Sortie();
-[result, prise] = Simulation('g1', Vi2, Balles(2), 0, s, Zone);
+[result, prise] = Simulation('g1', Vi2, Balles(2), 0, s, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '--');
 set(ln, 'DisplayName', 'Simulation 1');
@@ -63,7 +63,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 3')
 s = Sortie();
-[result, prise] = Simulation('g1', Vi3, Balles(3), 0, s, Zone);
+[result, prise] = Simulation('g1', Vi3, Balles(3), 0, s, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '.');
 set(ln, 'DisplayName', 'Simulation 3');
@@ -81,7 +81,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 4')
 s1 = Sortie();
-[result, prise] = Simulation('g2', Vi1, Balles(4), 0, s1, Zone);
+[result, prise] = Simulation('g2', Vi1, Balles(4), 0, s1, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'Color', 'r');
 set(ln, 'LineStyle', '-');
@@ -100,7 +100,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 5')
 s = Sortie();
-[result, prise] = Simulation('g2', Vi2, Balles(5), 0, s, Zone);
+[result, prise] = Simulation('g2', Vi2, Balles(5), 0, s, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '--');
 set(ln, 'DisplayName', 'Simulation 5');
@@ -119,7 +119,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 6')
 s = Sortie();
-[result, prise] = Simulation('g2', Vi3, Balles(6), 0, s, Zone);
+[result, prise] = Simulation('g2', Vi3, Balles(6), 0, s, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'Color', 'r');
 set(ln, 'LineStyle', '.');
@@ -138,7 +138,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 7')
 s1 = Sortie();
-[result, prise] = Simulation('g3', Vi1, Balles(7), 0, s1, Zone);
+[result, prise] = Simulation('g3', Vi1, Balles(7), 0, s1, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '-');
 set(ln, 'DisplayName', 'Simulation 7');
@@ -157,7 +157,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 8')
 s = Sortie();
-[result, prise] = Simulation('g3', Vi2, Balles(8), 0, s, Zone);
+[result, prise] = Simulation('g3', Vi2, Balles(8), 0, s, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '--');
 set(ln, 'DisplayName', 'Simulation 8');
@@ -176,7 +176,7 @@ disp(strcat('(', vf, ')'''))
 disp('--------------------------------------------------')
 disp('Simulation 9')
 s = Sortie();
-[result, prise] = Simulation('g3', Vi3, Balles(9), 0, s, Zone);
+[result, prise] = Simulation('g3', Vi3, Balles(9), 0, s, zonePrise);
 ln = line(result.x, result.y, result.z);
 set(ln, 'LineStyle', '.');
 set(ln, 'DisplayName', 'Simulation 9');
