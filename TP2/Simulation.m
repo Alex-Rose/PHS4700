@@ -4,7 +4,7 @@ function [ output, prise ] = Simulation( fn, vi, Balle, cnt, sortie, zone)
     p = SEDRK4([pas, [vi(1) vi(2) vi(3) Balle.Position]], pas, fn, Balle);
     Balle.Position = [p(5) p(6) p(7)];
 
-    sortie.Add(p(5),p(6),p(7),pas * cnt);
+    sortie.Add(p(5),p(6),p(7),pas * cnt, p(2), p(3), p(4));
     
     output = sortie;
     if (p(5) > 0)

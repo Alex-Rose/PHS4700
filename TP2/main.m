@@ -7,7 +7,7 @@ disp('TP2')
 
 definitions();
 
-Calculs.gravite(Balle)
+Calculs.gravite(Balle);
 
 
 hold on
@@ -36,6 +36,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim2
 disp('--------------------------------------------------')
@@ -50,6 +54,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim3
 disp('--------------------------------------------------')
@@ -64,6 +72,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim4
 disp('--------------------------------------------------')
@@ -79,6 +91,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim5
 disp('--------------------------------------------------')
@@ -94,6 +110,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim6
 disp('--------------------------------------------------')
@@ -109,6 +129,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim7
 disp('--------------------------------------------------')
@@ -124,6 +148,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim8
 disp('--------------------------------------------------')
@@ -139,6 +167,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 %sim9
 disp('--------------------------------------------------')
@@ -154,6 +186,10 @@ disp(prise)
 disp([ result.x(end) result.y(end) result.z(end)])
 disp('Temps')
 disp(result.t(end))
+disp('Vitesse finale')
+vf = sprintf('%.2f,' , [result.vx(end) result.vy(end) result.vz(end)]);
+vf = vf(1:end-1);
+disp(strcat('(', vf, ')'''))
 
 
 grid on
