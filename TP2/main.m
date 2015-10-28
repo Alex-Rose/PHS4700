@@ -24,6 +24,8 @@ set(fill, 'DisplayName', 'Zone de prise');
 alpha(0.3)
 
 %sim1
+disp('--------------------------------------------------')
+disp('Simulation 1')
 s1 = Sortie();
 [result, prise] = Simulation('g1', Vi1, Balles(1), 0, s1, Zone);
 ln = line(result.x, result.y, result.z);
@@ -36,6 +38,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim2
+disp('--------------------------------------------------')
+disp('Simulation 2')
 s = Sortie();
 [result, prise] = Simulation('g1', Vi2, Balles(2), 0, s, Zone);
 ln = line(result.x, result.y, result.z);
@@ -48,6 +52,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim3
+disp('--------------------------------------------------')
+disp('Simulation 3')
 s = Sortie();
 [result, prise] = Simulation('g1', Vi3, Balles(3), 0, s, Zone);
 ln = line(result.x, result.y, result.z);
@@ -60,6 +66,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim4
+disp('--------------------------------------------------')
+disp('Simulation 4')
 s1 = Sortie();
 [result, prise] = Simulation('g2', Vi1, Balles(4), 0, s1, Zone);
 ln = line(result.x, result.y, result.z);
@@ -73,6 +81,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim5
+disp('--------------------------------------------------')
+disp('Simulation 5')
 s = Sortie();
 [result, prise] = Simulation('g2', Vi2, Balles(5), 0, s, Zone);
 ln = line(result.x, result.y, result.z);
@@ -86,6 +96,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim6
+disp('--------------------------------------------------')
+disp('Simulation 6')
 s = Sortie();
 [result, prise] = Simulation('g2', Vi3, Balles(6), 0, s, Zone);
 ln = line(result.x, result.y, result.z);
@@ -99,6 +111,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim7
+disp('--------------------------------------------------')
+disp('Simulation 7')
 s1 = Sortie();
 [result, prise] = Simulation('g3', Vi1, Balles(7), 0, s1, Zone);
 ln = line(result.x, result.y, result.z);
@@ -112,6 +126,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim8
+disp('--------------------------------------------------')
+disp('Simulation 8')
 s = Sortie();
 [result, prise] = Simulation('g3', Vi2, Balles(8), 0, s, Zone);
 ln = line(result.x, result.y, result.z);
@@ -125,6 +141,8 @@ disp('Temps')
 disp(result.t(end))
 
 %sim9
+disp('--------------------------------------------------')
+disp('Simulation 9')
 s = Sortie();
 [result, prise] = Simulation('g3', Vi3, Balles(9), 0, s, Zone);
 ln = line(result.x, result.y, result.z);
