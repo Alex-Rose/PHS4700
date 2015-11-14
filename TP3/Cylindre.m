@@ -10,6 +10,7 @@ classdef Cylindre < handle
         k
         A
         t
+        Rot
     end
     
     methods
