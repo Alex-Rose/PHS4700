@@ -36,9 +36,16 @@ while cont
         boite.Rot = [ boite.Rot nrot ];
     end
     
+    if(CollisionBalleCylindre(balle,boite) == 1)
+        cont = false;
+        t_collision = t
+        boite.CentreDeMasse(1:3,end)'
+    end
+    
     if balle.CentreDeMasse(3,end) - balle.Rayon <= 0
         cont = false;
     end
+    
 end
 
 PlotBall();
