@@ -11,10 +11,16 @@ function c= CollisionBalleCylindre (balle, cylindre)
     if(EnCollision(centreGb,balle.CentreDeMasse(1:3,end)',gb(4),balle.Rayon) == 1)
 
         petitesBalles = GetPetitesBoulesCylindre(cylindre.Rayon,cylindre.Longueur,cylindre.CentreDeMasse(1:3,end)',nbBalles);
+        rot = Rotation(cylindre.Rot(1,end),cylindre.Rot(2,end),cylindre.Rot(3,end));
         
         %On vérifie si on a une collision avec une petite balle
+        %balle.CentreDeMasse(1:3,end)'
         for i = 1: 1: nbBalles
-            centrePb = [petitesBalles(i,1),petitesBalles(i,2),petitesBalles(i,3)];
+            centrePbMatrice = [petitesBalles(i,1) 0 0;0 petitesBalles(i,2) 0;0 0 petitesBalles(i,3)];
+            centrePbMatrice = rot*centrePbMatrice*inv(rot);
+            centrePb = [centrePbMatrice(1,1),centrePbMatrice(2,2),centrePbMatrice(3,3)];
+            
+            
             if(EnCollision(centrePb,balle.CentreDeMasse(1:3,end)',balle.Rayon,petitesBalles(i,4)) == 1)
                 c = 1;
                 break;
