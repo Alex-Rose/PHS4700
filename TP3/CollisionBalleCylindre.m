@@ -24,11 +24,6 @@ function c= CollisionBalleCylindre (balle, cylindre)
             
             if(EnCollision(centrePb,balle.CentreDeMasse(1:3,end)',balle.Rayon,petitesBalles(i).Rayon) == 1)
                 c = 1;
-                vec = Calculs.vecteurEntrePoints(balle.CentreDeMasse(1:3,end), centrePb');
-                d = DistanceCentre(balle.CentreDeMasse(1:3,end), centrePb');
-                ratio = petitesBalles(i,4) / (balle.Rayon + petitesBalles(i,4));
-                delta = vec * ratio;
-                pointCollision = centrePb' - delta;
                 break;
             end
         end

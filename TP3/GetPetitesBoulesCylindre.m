@@ -24,4 +24,3 @@ function petitesBalles= GetPetitesBoulesCylindre (rayon, hauteur,centre,nBalle)
         petitesBalles(i+nBalle/2+1).CentreDeMasse = [centre(1),centre(2),centre(3)-i*pas];
     end
 end
-
