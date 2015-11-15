@@ -3,6 +3,7 @@ clf;
 hold on
 grid on
 axis([-1 15 -1 1 0 5]);
+view([0, -90, 0])
 
 % ln = line(balle.CentreDeMasse(1,1:2), balle.CentreDeMasse(2,1:2), balle.CentreDeMasse(3,1:2));
 % set(ln, 'LineStyle', '-');
@@ -30,11 +31,13 @@ while i < stop
             draw = true;
         end
         
-        scatter3(balle.CentreDeMasse(1,j), balle.CentreDeMasse(2,j), balle.CentreDeMasse(3,j), '.b'); 
-        j = j + 1;
+        if j <= sba(2)
+            scatter3(balle.CentreDeMasse(1,j), balle.CentreDeMasse(2,j), balle.CentreDeMasse(3,j), '.b'); 
+            j = j + 1;
+        end
     end
     i = i+1;
-    pause(0.00000001);
+   % pause(0.001);
 end
 
 
