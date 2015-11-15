@@ -12,7 +12,8 @@ boite.W = [ 0 0 0 ]';
 balle.V = [ 6.85 0 6.85 ]'; 
 tballe = 0.66;
 
-step = 0.0001; % Because.
+step = 0.001; % Because.
+
 t = 0;
 dRot = boite.W * step;
 
