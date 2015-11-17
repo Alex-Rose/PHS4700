@@ -29,5 +29,14 @@ classdef Calculs
            
            p = col1 > 0 || col2 > 0 || col3 > 0;
        end
+       
+       function dispCDM(obj1, obj2)
+           disp('obj1');
+           disp(obj1.CentreDeMasse(:,end)');
+           disp('obj2');
+           disp(obj2.CentreDeMasse(:,end)');
+           disp('delta');
+           disp(obj1.CentreDeMasse(:,end)' - obj2.CentreDeMasse(:,end)');
+       end
    end
 end

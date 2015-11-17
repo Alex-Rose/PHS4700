@@ -10,13 +10,13 @@ boite.V = [ 0 0 0 ]';
 % boite.W = [ 0 0 0 ]';
 boite.W = [ 0 2.3 0 ]';
 
-balle.V = [ 6.85 0 6.85 ]'; 
-tballe = 0.66;
+% balle.V = [ 6.85 0 6.85 ]'; 
+% tballe = 0.66;
 
-% balle.V = [ 28 0.5 10 ]'; 
-% tballe = 1.1;
+balle.V = [ 28 0.5 10 ]'; 
+tballe = 1.1;
 
-step = 0.001; % Because.
+step = 0.0001; % Because.
 
 t = 0;
 dRot = boite.W * step;
@@ -38,10 +38,22 @@ while cont
         boite.Rot = [ boite.Rot nrot ];
     end
     
-    if(CollisionBalleCylindre(balle,boite) == 1)
+    [col pCol] = CollisionBalleCylindre(balle,boite);
+    if(col)
         cont = false;
         t_collision = t
         boite.CentreDeMasse(1:3,end)'
+        balle.CentreDeMasse(1:3,end)'
+        pCol = pCol
+        
+        disp('point de collision - balle.cdm');
+        disp(pCol - balle.CentreDeMasse(1:3,end));
+        
+        disp('distance entre balle.cdm et pCol');
+        disp(norm(pCol - balle.CentreDeMasse(1:3,end)));
+        
+        disp('erreur (mm)');
+        disp((0.0335 - norm(pCol - balle.CentreDeMasse(1:3,end)))*1000);
     end
     
     if balle.CentreDeMasse(3,end) - balle.Rayon <= 0
@@ -50,4 +62,4 @@ while cont
     
 end
 
-PlotBall();
+% PlotBall();

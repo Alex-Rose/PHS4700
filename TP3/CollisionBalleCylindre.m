@@ -1,4 +1,4 @@
-function c= CollisionBalleCylindre (balle, cylindre)
+function [c, pCollision] = CollisionBalleCylindre (balle, cylindre)
 
     nbBalles = 5;
 
@@ -7,6 +7,17 @@ function c= CollisionBalleCylindre (balle, cylindre)
     
     %On vérifie si il y a collision avec la grosse boule
     c = 0;
+    pCollision = [ 0 0 0]';
+    
+    % debug
+    
+        %if cylindre.t(end) >= 1.0970
+%         if cylindre.CentreDeMasse(3,end) - balle.CentreDeMasse(3,end) <= 0.1100
+%             Calculs.dispCDM(cylindre, balle)
+%             debug = 1;
+%         end
+    
+    
     if(EnCollision(gb.CentreDeMasse,balle.CentreDeMasse(1:3,end)',gb.Rayon,balle.Rayon) == 1)
 
         rot = Rotation(cylindre.Rot(1,end), cylindre.Rot(2,end), cylindre.Rot(3,end));
@@ -30,6 +41,13 @@ function c= CollisionBalleCylindre (balle, cylindre)
            if posBal(3) <= cylindre.Longueur / 2 && posBal(3) >= - cylindre.Longueur / 2
                disp('Collision side');
                c = 1;
+               
+               vectProjectionU = posBal(1:2) / norm(posBal(1:2));
+               vectContourCylindre = vectProjectionU * cylindre.Rayon;
+               
+               pCollision = [vectContourCylindre ; posBal(3)];
+               pCollision = inv(rot) * pCollision;
+               pCollision = pCollision + cylindre.CentreDeMasse(:,end);
            else
                % si la position en x et en y de la balle se situe a l'interieur de
                % -Rcylindre et + Rcylindre, alors la collision potentielle
@@ -37,10 +55,14 @@ function c= CollisionBalleCylindre (balle, cylindre)
                if norm(posBal(1:2)) <= cylindre.Rayon
                    % si la hauteur z est moindre que hauteur du cylindre /2
                    % alors il y a une collision avec le cylindre 
-                   if abs(posBal(3)) <= cylindre.Longueur / 2
+                   if abs(posBal(3)) <= cylindre.Longueur / 2 + balle.Rayon
                       % Trouver le point de collision 
                       disp('Collision top/bottom');
                       c = 1;
+
+                       pCollision = [posBal(1:2) ; posBal(3)/abs(posBal(3)) * cylindre.Longueur / 2];
+                       pCollision = inv(rot) * pCollision;
+                       pCollision = pCollision + cylindre.CentreDeMasse(:,end);
                    end
                % sinon la collision a lieu avec le rebord du cylindre. Il
                % faudra calculer la distance entre le centre de la balle et
@@ -71,29 +93,18 @@ function c= CollisionBalleCylindre (balle, cylindre)
                    if dist <= balle.Rayon
                        disp('Collision contour')
                        c = 1;
+                       
+                       vectProjectionU = posBal(1:2) / norm(posBal(1:2));
+                       vectContourCylindre = vectProjectionU * cylindre.Rayon;
+
+                       pCollision = [vectContourCylindre ; posBal(3)/abs(posBal(3)) * cylindre.Longueur / 2];
+                       pCollision = inv(rot) * pCollision;
+                       pCollision = pCollision + cylindre.CentreDeMasse(:,end);
                    end
                    
                end
            end
         end
         
-%         petitesBalles = GetPetitesBoulesCylindre(cylindre.Rayon, cylindre.Longueur, cylindre.CentreDeMasse(1:3,end)', nbBalles);
-%         
-%         
-%         %On vérifie si on a une collision avec une petite balle
-%         %balle.CentreDeMasse(1:3,end)'
-%         for i = 1: 1: nbBalles
-%             centrePbMatrice = [petitesBalles(i).CentreDeMasse(1) 0 0;...
-%                 0 petitesBalles(i).CentreDeMasse(2) 0;...
-%                 0 0 petitesBalles(i).CentreDeMasse(3)];
-%             centrePbMatrice = rot*centrePbMatrice*inv(rot);
-%             centrePb = [centrePbMatrice(1,1),centrePbMatrice(2,2),centrePbMatrice(3,3)];
-%             
-%             
-%             if(EnCollision(centrePb,balle.CentreDeMasse(1:3,end)',balle.Rayon,petitesBalles(i).Rayon) == 1)
-%                 c = 1;
-%                 break;
-%             end
-%         end
     end
 end
