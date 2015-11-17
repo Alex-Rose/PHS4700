@@ -15,5 +15,19 @@ classdef Calculs
        function v = vecteurEntrePoints(p1, p2) 
           v = p2 - p1;
        end
+       
+       % Retourne vrai si les deux triangles s'intersectent
+       function p = planSeparation(triangle1, triangle2)
+           pk1 = triangle1(1:3,1) - triangle1(1:3,2);
+           pk2 = triangle1(1:3,1) - triangle1(1:3,3);
+           
+           nk = cross(pk1, pk2) / norm(cross(pk1, pk2));
+           
+           col1 = dot(nk,triangle2(1:3,1) - triangle1(1:3,1));
+           col2 = dot(nk, triangle2(1:3,2) - triangle1(1:3,1));
+           col3 = dot(nk, triangle2(1:3,3) - triangle1(1:3,1));
+           
+           p = col1 > 0 || col2 > 0 || col3 > 0;
+       end
    end
 end

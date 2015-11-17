@@ -7,10 +7,14 @@ disp('TP3')
 Declarations();
 
 boite.V = [ 0 0 0 ]';
-boite.W = [ 0 0 0 ]';
+% boite.W = [ 0 0 0 ]';
+boite.W = [ 0 2.3 0 ]';
 
 balle.V = [ 6.85 0 6.85 ]'; 
 tballe = 0.66;
+
+% balle.V = [ 28 0.5 10 ]'; 
+% tballe = 1.1;
 
 step = 0.001; % Because.
 
@@ -31,9 +35,6 @@ while cont
         boite.t = [ boite.t t ];
         Simulation('calculBoite', boite, 0, 0, step);
         nrot = boite.Rot(1:3,end) + dRot;
-        nrot(1) = mod(nrot(1), 2*pi);
-        nrot(2) = mod(nrot(2), 2*pi);
-        nrot(3) = mod(nrot(3), 2*pi);
         boite.Rot = [ boite.Rot nrot ];
     end
     
