@@ -42,9 +42,9 @@ while cont
         disp('Point de collision: ')
         disp(pCol)        
         disp('Centre de masse de la balle: ')
-        disp(cdmBa)
+        disp(cdmBa')
         disp('Centre de masse de la boite: ')
-        disp(cdmBo)
+        disp(cdmBo')
         
         [vBalle vBoite ] = VitessesCollision( balle, boite, pCol);
         
