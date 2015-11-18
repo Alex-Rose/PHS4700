@@ -7,14 +7,14 @@ disp('TP3')
 Declarations();
 
 boite.V = [ 0 0 0 ]';
-% boite.W = [ 0 0 0 ]';
-boite.W = [ 0 2.3 0 ]';
+boite.W = [ 0 0 0 ]';
+%boite.W = [ 0 2.3 0 ]';
 
-% balle.V = [ 6.85 0 6.85 ]'; 
-% tballe = 0.66;
+balle.V = [ 6.85 0 6.85 ]'; 
+tballe = 0.66;
 
-balle.V = [ 28 0.5 10 ]'; 
-tballe = 1.1;
+%balle.V = [ 28 0.5 10 ]'; 
+%tballe = 1.1;
 
 step = 0.0001; % Because.
 
@@ -45,6 +45,9 @@ while cont
         boite.CentreDeMasse(1:3,end)'
         balle.CentreDeMasse(1:3,end)'
         pCol = pCol
+        
+        disp('*********************************');
+        VitessesCollision( balle, boite, pCol);
         
         disp('point de collision - balle.cdm');
         disp(pCol - balle.CentreDeMasse(1:3,end));
