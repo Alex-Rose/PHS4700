@@ -1,4 +1,4 @@
-function [vBa vBo wBa wBo] = vitesses_collision( balle, boite, pCollision )
+function [vBalle vBoite] = vitesses_collision( balle, boite, pCollision )
     % Coefficient
     e = 0.5;
 
@@ -23,19 +23,21 @@ function [vBa vBo wBa wBo] = vitesses_collision( balle, boite, pCollision )
     j = -a * (1 + e) * vRelAvant;
 
     % Vitesse et vitesse angulaire de la balle avant collision
-    vBai = vBaP
-    wBai = [0 0 0]'
+    vBai = vBaP;
+    wBai = [0 0 0]';
     % Vitesse et vitesse angulaire de la balle apres collision
-    vBaf = vBaP - j * ((normale / balle.Masse) + Iba \ cross((cross(rBaP, normale)), rBaP))
-    wBaf = [0 0 0]' - j * (Iba \ cross(rBaP, normale))
+    vBaf = vBaP - j * ((normale / balle.Masse) + Iba \ cross((cross(rBaP, normale)), rBaP));
+    wBaf = [0 0 0]' - j * (Iba \ cross(rBaP, normale));
+    
+    vBalle = [vBai wBai vBaf wBaf];
     
     % Vitesse et vitesse angulaire de la boite avant collision
-    vBoi = vBoP
-    wBoi = boite.W
+    vBoi = vBoP;
+    wBoi = boite.W;
     % Vitesse et vitesse angulaire de la boite apres collision
-    vBof = vBoP + j * ((normale / boite.Masse) + Ibo \ cross((cross(rBoP, normale)), rBoP))
-    wBof = boite.W + j * (Ibo \ cross(rBoP, normale))
+    vBof = vBoP + j * ((normale / boite.Masse) + Ibo \ cross((cross(rBoP, normale)), rBoP));
+    wBof = boite.W + j * (Ibo \ cross(rBoP, normale));
     
-   
+    vBoite = [vBoi wBoi vBof wBof];
 end
 

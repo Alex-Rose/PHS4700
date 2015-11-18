@@ -4,7 +4,7 @@ function [ moment ] = inertie( masse, rayon, hauteur, isSphere )
 
     if (isSphere)
         % Sphere
-        %Ic,xx = Ic,yy = Ic,zz = (2m/5)(rayon^2)
+        %Ic,xx = Ic,yy = Ic,zz = (2m/3)(rayon^2)
         moment(1,1) = (2 * masse / 3) * rayon^2;
         moment(2,2) = moment(1,1);
         moment(3,3) = moment(1,1);
