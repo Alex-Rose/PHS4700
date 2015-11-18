@@ -1,4 +1,4 @@
-function [vBalle vBoite] = vitesses_collision( balle, boite, pCollision )
+function [vBalle vBoite] = VitessesCollision( balle, boite, pCollision )
     % Coefficient
     e = 0.5;
 
