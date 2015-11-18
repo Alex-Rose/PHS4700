@@ -50,25 +50,25 @@ while cont
         
         
         disp('Vitesse de la balle avant impact: ')
-        disp(vBalle(:,1))
+        disp(vBalle(:,1)')
         disp('Vitesse de la balle apres impact: ')
-        disp(vBalle(:,3))
+        disp(vBalle(:,3)')
         disp('Vitesse angulaire de la balle avant impact: ')
-        disp(vBalle(:,2))
+        disp(vBalle(:,2)')
         disp('Vitesse angulaire de la balle apres impact: ')
-        disp(vBalle(:,4))
+        disp(vBalle(:,4)')
         
         disp('Vitesse de la boite avant impact: ')
-        disp(vBoite(:,1))
+        disp(vBoite(:,1)')
         disp('Vitesse de la boite apres impact: ')
-        disp(vBoite(:,3))
+        disp(vBoite(:,3)')
         disp('Vitesse angulaire de la boite avant impact: ')
-        disp(vBoite(:,2))
+        disp(vBoite(:,2)')
         disp('Vitesse angulaire de la boite apres impact: ')
-        disp(vBoite(:,4))
+        disp(vBoite(:,4)')
         
         disp('point de collision - balle.cdm');
-        disp(pCol - balle.CentreDeMasse(1:3,end));
+        disp(pCol' - balle.CentreDeMasse(1:3,end)');
         
         disp('Distance entre balle.cdm et pCol');
         disp(norm(pCol - balle.CentreDeMasse(1:3,end)));
