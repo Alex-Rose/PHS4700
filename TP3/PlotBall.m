@@ -42,7 +42,7 @@ set(ln, 'DisplayName', 'Simulation 1');
 
 
 
-title('Trajectoire des balles');
+title('Trajectoire des objets');
 xlabel('Axe des X');
 ylabel('Axe des Y');
 zlabel('Axe des Z');

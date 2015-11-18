@@ -7,7 +7,7 @@ disp('TP3')
 Declarations();
 
 boite.V = [ 0 0 0 ]';
-% boite.W = [ 0 0 0 ]';
+%boite.W = [ 0 0 0 ]';
 boite.W = [ 0 2.3 0 ]';
 
 % balle.V = [ 6.85 0 6.85 ]'; 
@@ -16,7 +16,7 @@ boite.W = [ 0 2.3 0 ]';
 balle.V = [ 28 0.5 10 ]'; 
 tballe = 1.1;
 
-step = 0.0001; % Because.
+step = 0.00005; % Because.
 
 t = 0;
 dRot = boite.W * step;
@@ -62,4 +62,4 @@ while cont
     
 end
 
-% PlotBall();
+PlotBall();
