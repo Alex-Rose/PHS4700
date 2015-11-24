@@ -7,6 +7,7 @@ classdef Bloc
         Hauteur
         CDM
         n           %indice de refraction du bloc
+        Plans
         
     end
     
