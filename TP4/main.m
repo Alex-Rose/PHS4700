@@ -31,3 +31,47 @@ for i = 1:size(blocTrans.Plans(:))
         end
     end
 end
+
+file = fopen('out.bmp', 'w');
+
+x = 16;
+y = 16;
+
+BM = [ hex2dec('42') hex2dec('4D')];
+size = x * y + hex2dec('436');
+reserved = [ 0 0 0 0 ];
+offset = [ hex2dec('36') hex2dec('04') 0 0 ];
+dibsize = [hex2dec('28') 0 0 0];
+x;
+y;
+nplanes = [1 0];
+colors256_8bits = [ 8 0 ];
+compression = [0 0 0 0];
+imgSize = x * y;
+unused = zeros(16);
+
+h = fopen('header.bin');
+hbytes = fread(h);
+fclose(h);
+
+data = [];
+for i = 1:x*y
+	data = [data 79];
+end
+
+fwrite(file, BM);
+fwrite(file, size, 'integer*4');
+fwrite(file, reserved);
+fwrite(file, offset);
+fwrite(file, dibsize);
+fwrite(file, x, 'integer*4');
+fwrite(file, y, 'integer*4');
+fwrite(file, nplanes);
+fwrite(file, colors256_8bits);
+fwrite(file, compression);
+fwrite(file, imgSize, 'integer*4');
+fwrite(file, unused(1,:));
+fwrite(file, hbytes);
+fwrite(file, data);
+
+fclose(file);
