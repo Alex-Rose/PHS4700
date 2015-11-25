@@ -4,7 +4,7 @@ classdef Plan < handle
     properties
         n
         Point
-        Param % Ax + Bx + Cx + D = 0
+        Param % Ax + By + Cz + D = 0
         Limits
     end
     
