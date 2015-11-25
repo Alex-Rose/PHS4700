@@ -11,8 +11,6 @@ classdef Calculs
         % n1 : indice de refraction 1
         % n2 : indice de refraction 2
         function out = Refraction(u, n, n1, n2)
-            u = [1 0 0]';
-            n = [-1 0 0]';
             
             % s'assurer que les vecteurs sont unitaires
             u = u / norm(u); 
@@ -30,7 +28,7 @@ classdef Calculs
             
             si = dot(k, u);
             thetai = asin(si);
-            %deg = thetai / 2 /pi * 360
+            deg = thetai / 2 /pi * 360
 
             if -max <= thetai && max >= thetai
                 st = n1/n2 * si;

@@ -7,17 +7,35 @@ classdef Bloc
         Hauteur
         CDM
         n           %indice de refraction du bloc
-        Plans
+        Plans       % Dans l'ordre : dessus, dessous, devant, derriere, gauche, droite
         
     end
     
     methods
-        function obj = Bloc(lar, long, haut, indice, cdm)
+        function obj = Bloc(lar, lon, haut, indice, cdm)
             obj.Largeur = lar;
-            obj.Longueur = long;
+            obj.Longueur = lon;
             obj.Hauteur = haut;
             obj.n = indice;
             obj.CDM = cdm;
+            
+            limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)+haut/2 cdm(3)+haut/2];
+            obj.Plans = Plan([0;0;1], [cdm(1);cdm(2);cdm(3)+haut/2], limits);
+            
+            limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)-haut/2];
+            obj.Plans = [obj.Plans Plan([0;0;-1], [cdm(1);cdm(2);cdm(3)-haut/2], limits)];
+            
+            limits = [cdm(1)-lar/2 cdm(1)-lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
+            obj.Plans = [obj.Plans Plan([-1;0;0], [cdm(1)-lar/2;cdm(2);cdm(3)], limits)];
+            
+            limits = [cdm(1)+lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
+            obj.Plans = [obj.Plans Plan([1;0;0], [cdm(1)+lar/2;cdm(2);cdm(3)], limits)];
+            
+            limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)-lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
+            obj.Plans = [obj.Plans Plan([0;-1;0], [cdm(1);cdm(2)-lon/2;cdm(3)], limits)];
+            
+            limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)+lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
+            obj.Plans = [obj.Plans Plan([0;1;0], [cdm(1);cdm(2)+lon/2;cdm(3)], limits)];
         end
     end
     
