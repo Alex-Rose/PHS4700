@@ -15,6 +15,29 @@ d = Droite([2 0 0]', [-10 3.5 14]');
 % Calculs.Refraction(d.u, p.n, 1, 2);
 
 [obs, blocTrans, blocColors] = Declarations([-10 -10  15], 1, 1.5);
+
+%Calcul des droites entre l'observateurs et les plans
+for i = 1:size(blocTrans.Plans(:))
+    
+    pointsPlan = GetPointsPlan(blocTrans.Plans(i));
+    indexDroite = 0
+    
+
+    for j = 1:size(pointsPlan,1)
+        for k = 1:size(pointsPlan,2)
+            
+            indexDroite = indexDroite+1;
+            
+            %droites(i,indexDroite) = Droite([2 0 1]', [-10 0 0]');
+            droites(i,indexDroite) = Droite([pointsPlan(j,k,1)-obs.Position(1) pointsPlan(j,k,2)-obs.Position(2) pointsPlan(j,k,3)-obs.Position(3)]', obs.Position');
+            
+        end
+    end
+    
+
+    
+end
+
 dedans = false;
 keep = true;
 collision = false;
