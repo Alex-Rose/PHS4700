@@ -28,7 +28,7 @@ classdef Calculs
             
             si = dot(k, u);
             thetai = asin(si);
-            deg = thetai / 2 /pi * 360
+%             deg = thetai / 2 /pi * 360
 
             if -max <= thetai && max >= thetai
                 st = n1/n2 * si;

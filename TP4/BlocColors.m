@@ -26,6 +26,24 @@ classdef BlocColors < Bloc
             obj.FaceSuperieur = Color.Magenta;
             obj.FaceInferieur = Color.Bleu;
         end
+        
+        function couleur = GetCouleur(obj, i)
+            switch i
+                case 1
+                    couleur = obj.FaceSuperieur;
+                case 2
+                    couleur = obj.FaceInferieure;
+                case 3
+                    couleur = obj.FaceAvant;
+                case 4
+                    couleur = obj.FaceArriere;
+                case 5
+                    couleur = obj.FaceGauche;
+                case 6
+                    couleur = obj.FaceDroite;
+            end
+        end
+            
     end
     
 end
