@@ -1,6 +1,8 @@
 clear;  %clear la mémoire
 clc;    %clear le texte de la console
 
+clf
+
 % --------------- INITIALISATION ---------------
 disp('TP4')
 
@@ -32,7 +34,9 @@ end
 
 
 index = 1;
-for i = 3:size(droites(:))   
+Rf = [];
+scatter3(obs.Position(1), obs.Position(2), obs.Position(3), 'MarkerEdgeColor','k', 'MarkerFaceColor',[0 0 0]);
+for i = 1:size(droites(:))   
     
         
     if mod(i,10500) == 0
@@ -48,13 +52,20 @@ for i = 3:size(droites(:))
     [collision, couleur, dist] = simulateRayon(rayon, blocTrans, blocColors);
 
     if collision == true
+        Rf = horzcat(Rf, [rayon.Point + rayon.u * dist ; couleur.R ; couleur.G ; couleur.B]);
         rayonsColl(index, 1:3) = rayon.u;
         rayonsColl(index, 4:6) = [couleur.R couleur.G couleur.B];
         rayonsColl(index, 7) = dist;
         index = index + 1;
+        
+        %plot
+        lel = rayon.Point + rayon.u * dist;
+        
+        hold on
+        scatter3(lel(1), lel(2), lel(3), 'MarkerFaceColor', [couleur.R/255 couleur.G/255 couleur.B/255]);
+        hold off
     end
 end
-
 
 disp('end');
 %         if bool

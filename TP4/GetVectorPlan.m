@@ -4,17 +4,17 @@ function p= GetVectorPlan (plan, obs)
     p0 = plan.Sommets(:,1);
     
     % vecteurs orthogonaux
-    v1 = plan.Sommets(:,2) - p0
-    v2 = plan.Sommets(:,4) - p0
-    u1 = v1 / norm(v1)
-    u2 = v2 / norm(v2)
+    v1 = plan.Sommets(:,2) - p0;
+    v2 = plan.Sommets(:,4) - p0;
+    u1 = v1 / norm(v1);
+    u2 = v2 / norm(v2);
     
     % Verification de la validite des vecteurs orthogonaux
     if cross(cross(v1, v2), plan.n) ~= 0
        error('Erreur! Les vecteurs du plan ne sont pas orthogonaux'); 
     end
     
-    dimCarre = 2; %carres de 0.1 cm × 0.1 cm
+    dimCarre = 1; %carres de 0.1 cm × 0.1 cm
     
     % dv avec le pas dimCarre
     d1 = u1 * dimCarre;

@@ -40,10 +40,11 @@ function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocCol
                         % ON A UNE COLLISION
                         % PRENDRE LA COULEUR
                         distance = distance + norm(d.Point - pt);
+                        couleur = blocColors.GetCouleur(i);
                         keep = false;
                         collision = true;
-                        disp('Couleur ! ')
-                        disp (blocColors.GetCouleur(i));
+%                         disp('Couleur ! ');
+%                         disp (blocColors.GetCouleur(i));
                         break;
                     end
                 end
@@ -63,8 +64,8 @@ function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocCol
                                 s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
                                 d = Droite(s, pt);
                             else
-                                % Il y a r?fraction, toutefois on garde la
-                                % partie r?fl?chie du rayon
+                                % Il y a refraction, toutefois on garde la
+                                % partie reflechie du rayon
                                 s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
                                 d = Droite(s, pt);
                             end
