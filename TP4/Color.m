@@ -1,4 +1,4 @@
-classdef Color
+classdef Color 
     %Color 
     enumeration 
         Cyan([0,255,255]),
@@ -6,7 +6,8 @@ classdef Color
         Vert([0,255,0]),
         Jaune([255,255,0]),
         Bleu([0,0,255]),
-        Magenta([255,0,255])
+        Magenta([255,0,255]),
+        Blanc([255,255,255])
     end
     properties
         R,
@@ -15,7 +16,7 @@ classdef Color
     end
     
     methods
-        function obj =Color(composition)
+        function obj = Color(composition)
             obj.R = composition(1);
             obj.G = composition(2);
             obj.B = composition(3);
