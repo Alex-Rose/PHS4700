@@ -6,47 +6,47 @@ disp('TP4')
 
 % limits = [1 1; -1 1; 0 2];
 % p = Plan([1 0 0]', [1 0 0]', limits);
-droite = Droite([2 0 1]', [-10 0 0]');
+% droite = Droite([2 0 1]', [-10 0 0]');
+% 
+% 
+% % [bool, pt] = Calculs.Collision(d, p);
+% 
+% % res = Calculs.Reflexion(d.u, p.n);
+% droites = zeros(6,10500,6);
+% % Calculs.Refraction(d.u, p.n, 1, 2);
+[obs, blocTrans, blocColors] = Declarations([-10 -10  15]', 1, 1.5);
 
-
-% [bool, pt] = Calculs.Collision(d, p);
-
-% res = Calculs.Reflexion(d.u, p.n);
-droites = zeros(6,10500,6);
-% Calculs.Refraction(d.u, p.n, 1, 2);
-[obs, blocTrans, blocColors] = Declarations([-10 -10  15], 1, 1.5);
+droites = [];
 %Calcul des droites entre l'observateurs et les plans
 for i = 1:size(blocTrans.Plans(:))
     
-    pointsPlan = GetVectorPlan(blocTrans.Plans(i), obs);
-    indexDroite = 0;
-    
-    for j = 1:size(pointsPlan,1)
-
-        for k = 1:size(pointsPlan,2)
-            
-            indexDroite = indexDroite+1;
-            d = Droite([pointsPlan(j,k,1) pointsPlan(j,k,2) pointsPlan(j,k,3)]', obs.Position');
-            
-            droites(i, indexDroite, 1:3) = d.u(1:3);
-            droites(i, indexDroite, 4:6) = d.Point(1:3);
-            %droites(i,indexDroite) = Droite([pointsPlan(j,k,1) pointsPlan(j,k,2) pointsPlan(j,k,3)]', obs.Position');
-            
-        end
+    if dot([obs.Position;1], blocTrans.Plans(i).Param) < 0
+        % le plan ne peut être vu par l'observateur
+        continue 
     end
     
-
+    disp('Plan ')
+    disp(i)
+    
+    ds = GetVectorPlan(blocTrans.Plans(i), obs);
+    droites = [droites ds];
     
 end
 
-test = ExtractDroite(droites(1,10,1:6));
+% test = ExtractDroite(droites(1,10,1:6));
+
+d = Droite([-2 0 0]', [10 3.5 14]');
+d = Droite([0 0 2]', [3.5 4 -50]');
+d = Droite([0 -5 0]', [3.5 10 14.5]');
 
 dedans = false;
 keep = true;
 collision = false;
 failsafe = 0;
-while keep && collision == false && failsafe < 1000;
+distance = 0;
+while keep && collision == false && failsafe < 100;
     if dedans == false
+        keep = false;
         for i = 1:size(blocTrans.Plans(:))
             [bool, pt] = Calculs.Collision(d, blocTrans.Plans(i));
             
@@ -58,7 +58,9 @@ while keep && collision == false && failsafe < 1000;
                        s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
                     else
                         dedans = true;
+                        keep = true;
                     end
+                    distance = distance + norm(d.Point - pt);
                     d = Droite(s, pt);
                 end
             end
@@ -76,6 +78,7 @@ while keep && collision == false && failsafe < 1000;
                 if dot([d.Point;1], blocColors.Plans(i).Param) >= 0
                     % ON A UNE COLLISION
                     % PRENDRE LA COULEUR
+                    distance = distance + norm(d.Point - pt);
                     keep = false;
                     collision = true;
                     disp('Couleur ! ')
@@ -94,13 +97,15 @@ while keep && collision == false && failsafe < 1000;
                     % Si le produit scalaire est negatif, le point est derriere le plan
                     if dot([d.Point;1], blocTrans.Plans(i).Param) <= 0
                         s = Calculs.Refraction(d.u, blocTrans.Plans(i).n, 1, 1.5);
+                        distance = distance + norm(d.Point - pt);
                         if norm(s) == 0
                             s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
                             d = Droite(s, pt);
                         else
-                            % Le rayon quitte le bloc. on l'elimine
-                            keep = false;
-                            dedans = false;
+                            % Il y a réfraction, toutefois on garde la
+                            % partie réfléchie du rayon
+                            s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
+                            d = Droite(s, pt);
                         end
                     end
                 end

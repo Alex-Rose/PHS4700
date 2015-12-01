@@ -50,7 +50,7 @@ classdef Calculs
 
                 % t = -d - apad - bpbd - cpcd / adA + bdB +cdC
                 t = (-plan.Param(4) - plan.Param(1)*droite.Point(1) - plan.Param(2)*droite.Point(2) - plan.Param(3)*droite.Point(3));
-                t = t / (plan.Param(1) * droite.u(1) + plan.Param(2) * droite.u(2) + plan.Param(2) * droite.u(2));
+                t = t / (plan.Param(1) * droite.u(1) + plan.Param(2) * droite.u(2) + plan.Param(3) * droite.u(3));
 
                 p = [droite.Point(1) + t*droite.u(1) ; droite.Point(2) + t*droite.u(2) ; droite.Point(3) + t*droite.u(3)];
                 

@@ -1,70 +1,36 @@
 function p= GetVectorPlan (plan, obs)
 
-    dimCarre = 0.1; %carres de 0.1 cm × 0.1 cm
-
-    %Vérifier l'orientation du plan (XY, XZ ou YZ)
-
-    iDim1 =0; %index de la premiere dimension
-    iDim2 =0; %index de la seconde dimension
+    % premier coin du plan
+    p0 = [plan.Limits(1,1) plan.Limits(2,1) plan.Limits(3,1)]';
     
-    %Comme les plans sont tous parallèle au axe, il y a toujours
-    %un paramètre statique.
-    iDim3 =0;
+    % vecteurs orthogonaux
+    v1 = [plan.Limits(1,2) plan.Limits(2,1) plan.Limits(3,2)]' - p0
+    v2 = [plan.Limits(1,1) plan.Limits(2,2) plan.Limits(3,1)]' - p0
+    u1 = v1 / norm(v1)
+    u2 = v2 / norm(v2)
     
-    if(plan.Param(1) == 0 && plan.Param(2) == 0) %XY
-        iDim1 = 1;
-        iDim2 = 2;
-        iDim3 = 3;
-        
-    elseif (plan.Param(1) == 0 && plan.Param(3) == 0) %XZ
-        iDim1 = 1;
-        iDim2 = 3;
-        iDim3 = 2;
-    else %YZ
-        iDim1 = 2;
-        iDim2 = 3;
-        iDim3 = 1;
-    end
-
-    %Dimension = (max-min)/pas
-   % p = [(plan.Limits(iDim1,2)-plan.Limits(iDim1,1))/dimCarre:(plan.Limits(iDim2,2)-plan.Limits(iDim2,1))/dimCarre];
-   % p
+    dimCarre = 2; %carres de 0.1 cm × 0.1 cm
     
-    %Boucle sur la premiere dimension, du min au max des limites avec un pas de 0.1 cm
+    % dv avec le pas dimCarre
+    d1 = u1 * dimCarre;
+    d2 = u2 * dimCarre;
     
-    indexI = 0;
-    for i = plan.Limits(iDim1,1):dimCarre:(plan.Limits(iDim1,2)-dimCarre)
-        
-        indexI = indexI+1;
-        indexJ = 0;
-        
-        %Boucle sur la deuxième dimension
-        for j = plan.Limits(iDim2,1):dimCarre:(plan.Limits(iDim2,2)-dimCarre)
-
-            indexJ = indexJ+1;
-            
-            % Ax + By + Cz + D = 0
-            point = [0,0,0];
-            point(iDim1) = i+0.05;
-            point(iDim2) = j+0.05;
-            
-            signe = -1;
-            %On vérifie si le paramatre statique est positif ou negatif
-            if(plan.Param(iDim3) < 0)
-                signe = 1;
-            end
-            
-            point(iDim3) = plan.Param(4) * signe; %Valeur du D
-            
-            %p(indexI,indexJ)= point;
-            p(indexI,indexJ,1) = point(1)-obs.Position(1);
-            p(indexI,indexJ,2) = point(2)-obs.Position(2);
-            p(indexI,indexJ,3) = point(3)-obs.Position(3);
+    % Nombre de divisions
+    cnt1 = round((norm(v1) / dimCarre));
+    cnt2 = round((norm(v2) / dimCarre));
+    
+    droites = [];
+    
+    for i=1:cnt1
+        for j=1:cnt2
+            u = p0 + d1 * i + d2 * j;
+            u = u - obs.Position;
+            u = u / norm(u);
+            v = Droite(u, obs.Position);
+            droites = [droites v];
         end
-        
     end
-    
-    %indexI
-    %indexJ
+
+    p = droites;
     
 end

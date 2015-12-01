@@ -32,7 +32,7 @@ classdef BlocColors < Bloc
                 case 1
                     couleur = obj.FaceSuperieur;
                 case 2
-                    couleur = obj.FaceInferieure;
+                    couleur = obj.FaceInferieur;
                 case 3
                     couleur = obj.FaceAvant;
                 case 4
