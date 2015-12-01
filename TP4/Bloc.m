@@ -20,22 +20,28 @@ classdef Bloc
             obj.CDM = cdm;
             
             limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)+haut/2 cdm(3)+haut/2];
-            obj.Plans = Plan([0;0;1], [cdm(1);cdm(2);cdm(3)+haut/2], limits);
+            sommets = [cdm(1)-lar/2 cdm(2)-lon/2 cdm(3)+haut/2; cdm(1)+lar/2 cdm(2)-lon/2 cdm(3)+haut/2; cdm(1)+lar/2 cdm(2)+lon/2 cdm(3)+haut/2; cdm(1)-lar/2 cdm(2)+lon/2 cdm(3)+haut/2]';
+            obj.Plans = Plan([0;0;1], [cdm(1);cdm(2);cdm(3)+haut/2], limits, sommets);
             
             limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)-haut/2];
-            obj.Plans = [obj.Plans Plan([0;0;-1], [cdm(1);cdm(2);cdm(3)-haut/2], limits)];
+            sommets = [cdm(1)-lar/2 cdm(2)-lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)-lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)+lon/2 cdm(3)-haut/2; cdm(1)-lar/2 cdm(2)+lon/2 cdm(3)-haut/2]';
+            obj.Plans = [obj.Plans Plan([0;0;-1], [cdm(1);cdm(2);cdm(3)-haut/2], limits, sommets)];
             
             limits = [cdm(1)-lar/2 cdm(1)-lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
-            obj.Plans = [obj.Plans Plan([-1;0;0], [cdm(1)-lar/2;cdm(2);cdm(3)], limits)];
+            sommets = [cdm(1)-lar/2 cdm(2)-lon/2 cdm(3)-haut/2; cdm(1)-lar/2 cdm(2)+lon/2 cdm(3)-haut/2; cdm(1)-lar/2 cdm(2)+lon/2 cdm(3)+haut/2; cdm(1)-lar/2 cdm(2)-lon/2 cdm(3)+haut/2]';
+            obj.Plans = [obj.Plans Plan([-1;0;0], [cdm(1)-lar/2;cdm(2);cdm(3)], limits, sommets)];
             
             limits = [cdm(1)+lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
-            obj.Plans = [obj.Plans Plan([1;0;0], [cdm(1)+lar/2;cdm(2);cdm(3)], limits)];
+            sommets = [cdm(1)+lar/2 cdm(2)-lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)+lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)+lon/2 cdm(3)+haut/2; cdm(1)+lar/2 cdm(2)-lon/2 cdm(3)+haut/2]';
+            obj.Plans = [obj.Plans Plan([1;0;0], [cdm(1)+lar/2;cdm(2);cdm(3)], limits, sommets)];
             
             limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)-lon/2 cdm(2)-lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
-            obj.Plans = [obj.Plans Plan([0;-1;0], [cdm(1);cdm(2)-lon/2;cdm(3)], limits)];
+            sommets = [cdm(1)-lar/2 cdm(2)-lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)-lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)-lon/2 cdm(3)+haut/2; cdm(1)-lar/2 cdm(2)-lon/2 cdm(3)+haut/2]';
+            obj.Plans = [obj.Plans Plan([0;-1;0], [cdm(1);cdm(2)-lon/2;cdm(3)], limits, sommets)];
             
             limits = [cdm(1)-lar/2 cdm(1)+lar/2; cdm(2)+lon/2 cdm(2)+lon/2;cdm(3)-haut/2 cdm(3)+haut/2];
-            obj.Plans = [obj.Plans Plan([0;1;0], [cdm(1);cdm(2)+lon/2;cdm(3)], limits)];
+            sommets = [cdm(1)-lar/2 cdm(2)+lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)+lon/2 cdm(3)-haut/2; cdm(1)+lar/2 cdm(2)+lon/2 cdm(3)+haut/2; cdm(1)-lar/2 cdm(2)+lon/2 cdm(3)+haut/2]';
+            obj.Plans = [obj.Plans Plan([0;1;0], [cdm(1);cdm(2)+lon/2;cdm(3)], limits, sommets)];
         end
     end
     
