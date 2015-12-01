@@ -14,7 +14,7 @@ function p= GetVectorPlan (plan, obs)
        error('Erreur! Les vecteurs du plan ne sont pas orthogonaux'); 
     end
     
-    dimCarre = 1; %carres de 0.1 cm × 0.1 cm
+    dimCarre = 0.1; %carres de 0.1 cm × 0.1 cm
     
     % dv avec le pas dimCarre
     d1 = u1 * dimCarre;

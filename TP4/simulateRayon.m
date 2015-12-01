@@ -1,4 +1,4 @@
-function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocColors )
+function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocColors, obs )
     dedans = false;
     keep = true;
     collision = false;
@@ -14,7 +14,7 @@ function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocCol
                 if bool
                      % Si le produit scalaire est positif, le point est face au plan
                     if dot([d.Point;1], blocTrans.Plans(i).Param) >= 0
-                        s = Calculs.Refraction(d.u, blocTrans.Plans(i).n, 1, 1.5);
+                        s = Calculs.Refraction(d.u, blocTrans.Plans(i).n, obs.n, blocTrans.n);
                         if norm(s) == 0
                            s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
                         else
@@ -58,7 +58,7 @@ function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocCol
                     if bool
                         % Si le produit scalaire est negatif, le point est derriere le plan
                         if dot([d.Point;1], blocTrans.Plans(i).Param) <= 0
-                            s = Calculs.Refraction(d.u, blocTrans.Plans(i).n, 1, 1.5);
+                            s = Calculs.Refraction(d.u, -1 * blocTrans.Plans(i).n, blocTrans.n, obs.n);
                             distance = distance + norm(d.Point - pt);
                             if norm(s) == 0
                                 s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
@@ -68,6 +68,7 @@ function [ collision, couleur, distance ] = simulateRayon( d, blocTrans, blocCol
                                 % partie reflechie du rayon
                                 s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
                                 d = Droite(s, pt);
+%                                     keep = false;
                             end
                         end
                     end
