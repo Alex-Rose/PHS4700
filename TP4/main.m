@@ -6,7 +6,7 @@ disp('TP4')
 
 % limits = [1 1; -1 1; 0 2];
 % p = Plan([1 0 0]', [1 0 0]', limits);
-droite = Droite([2 0 1]', [-10 0 0]');
+% droite = Droite([2 0 1]', [-10 0 0]');
 
 
 % [bool, pt] = Calculs.Collision(d, p);
@@ -15,6 +15,7 @@ droite = Droite([2 0 1]', [-10 0 0]');
 droites = zeros(6,10500,6);
 % Calculs.Refraction(d.u, p.n, 1, 2);
 [obs, blocTrans, blocColors] = Declarations([-10 -10  15], 1, 1.5);
+
 %Calcul des droites entre l'observateurs et les plans
 for i = 1:size(blocTrans.Plans(:))
     
@@ -34,81 +35,34 @@ for i = 1:size(blocTrans.Plans(:))
             
         end
     end
-    
-
-    
 end
 
-test = ExtractDroite(droites(1,10,1:6));
 
-dedans = false;
-keep = true;
-collision = false;
-failsafe = 0;
-while keep && collision == false && failsafe < 1000;
-    if dedans == false
-        for i = 1:size(blocTrans.Plans(:))
-            [bool, pt] = Calculs.Collision(d, blocTrans.Plans(i));
-            
-            if bool
-                 % Si le produit scalaire est positif, le point est face au plan
-                if dot([d.Point;1], blocTrans.Plans(i).Param) >= 0
-                    s = Calculs.Refraction(d.u, blocTrans.Plans(i).n, 1, 1.5);
-                    if norm(s) == 0
-                       s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
-                    else
-                        dedans = true;
-                    end
-                    d = Droite(s, pt);
-                end
-            end
-        end
-    else
-        % Le rayon est dedans
-        collision = false;
+index = 1;
+for i = 3:size(droites,1)   
+    for j = 1:size(droites,2)
         
-        % verifie collision avec le bloc de couleur
-        for i = 1:size(blocColors.Plans(:))
-            [bool, pt] = Calculs.Collision(d, blocColors.Plans(i));
-            
-            if bool
-                 % Si le produit scalaire est positif, le point est face au plan
-                if dot([d.Point;1], blocColors.Plans(i).Param) >= 0
-                    % ON A UNE COLLISION
-                    % PRENDRE LA COULEUR
-                    keep = false;
-                    collision = true;
-                    disp('Couleur ! ')
-                    disp (blocColors.GetCouleur(i));
-                    break;
-                end
-            end
+        if mod(j,10500) == 0
+            disp('running')
         end
+                
+        rayon = ExtractDroite(droites(i,j,1:6));
         
-        % Il n'y a pas eu de collision avec le bloc de couleur
-        if collision == false
-            for i = 1:size(blocTrans.Plans(:))
-                [bool, pt] = Calculs.Collision(d, blocTrans.Plans(i));
-            
-                if bool
-                    % Si le produit scalaire est negatif, le point est derriere le plan
-                    if dot([d.Point;1], blocTrans.Plans(i).Param) <= 0
-                        s = Calculs.Refraction(d.u, blocTrans.Plans(i).n, 1, 1.5);
-                        if norm(s) == 0
-                            s = Calculs.Reflexion(d.u, blocTrans.Plans(i).n);
-                            d = Droite(s, pt);
-                        else
-                            % Le rayon quitte le bloc. on l'elimine
-                            keep = false;
-                            dedans = false;
-                        end
-                    end
-                end
-            end % Fin de toutes les faces du bloc transparent
+%         if dot(rayon.u, blocTrans.Plans(i).n) > 0
+%             break;
+%         end
+        
+        [collision, couleur, dist] = simulateRayon(rayon, blocTrans, blocColors);
+        
+        if collision == true
+            rayonsColl(index, 1:3) = rayon.u;
+            rayonsColl(index, 4:6) = [couleur.R couleur.G couleur.B];
+            rayonsColl(index, 7) = dist;
+            index = index + 1;
         end
     end
-    failsafe = failsafe + 1;
 end
+
 
 disp('end');
 %         if bool
