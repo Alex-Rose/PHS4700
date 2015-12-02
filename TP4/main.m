@@ -23,7 +23,11 @@ maxPlotDistance = 30;
 
 tic;
 
-[obs, blocTrans, blocColors] = Declarations([-10 -10  15]', 1, 1.5);
+%[obs, blocTrans, blocColors] = Declarations([-10 -10  15]', 1, 1.5);
+%[obs, blocTrans, blocColors] = Declarations([13 10  25]', 1, 1.5);
+%[obs, blocTrans, blocColors] = Declarations([-10 -10  15]', 1.33, 1.1);
+[obs, blocTrans, blocColors] = Declarations([13 10  25]', 1.33, 1.1);
+
 
 if ~skipGeneration
     droites = [];
@@ -61,7 +65,8 @@ disp(txt);
 if ~skipSimulation
     n = npar*2;
     totalSize = size(droites(:));
-    partsSize = totalSize / n;
+    partsSize = round(totalSize / n);
+    droitesList = {};
 
     % Dupliquer les ressources pour eviter les acces concurents et augmenter le
     % speedup
@@ -73,9 +78,9 @@ if ~skipSimulation
 
         % Repartition naive du travail. Une queue ou une moving window serait plus efficace
         if i == n
-            droitesList{i} = droites((i-1) * partsSize + 1:end);
+            droitesList{i} = droites((i-1) * partsSize(1) + 1:end);
         else
-            droitesList{i} = droites((i-1) * partsSize + 1:i*partsSize);
+            droitesList{i} = droites((i-1) * partsSize(1) + 1:i*partsSize(1));
         end
     end
 
@@ -138,9 +143,9 @@ disp(txt);
 toc; 
 disp('end');
 
-data = [];
-for i = 1:16*16
-    data = [data 79];
-end
-
-outputBmp(16, 16, data);
+% data = [];
+% for i = 1:16*16
+%     data = [data 79];
+% end
+% 
+% outputBmp(16, 16, data);
